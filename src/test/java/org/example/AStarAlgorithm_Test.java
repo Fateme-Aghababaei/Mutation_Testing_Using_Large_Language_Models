@@ -7,125 +7,79 @@ import org.junit.Test;
 import java.util.List;
 
 public class AStarAlgorithm_Test {
-
-    // Test 1: Simple path from start to goal
     @Test
     public void testAStarSearch_SimplePath() {
-        // Create a simple graph
         Node start = new Node(0, 0);
         Node goal = new Node(2, 2);
-
         start.addNeighbor(new Node(1, 1), 1);
         new Node(1, 1).addNeighbor(goal, 1);
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, goal);
-
-        // Check if the path is correct
         assertNull(path);
     }
 
-    // Test 2: No path from start to unreachable goal
     @Test
     public void testAStarSearch_NoPath() {
-        // Create a graph with no path from start to goal
         Node start = new Node(0, 0);
         Node goal = new Node(4, 4);
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, goal);
-
-        // Check if no path is returned
         assertNull(path);
     }
 
-    // Test 3: Start and goal are the same
     @Test
     public void testAStarSearch_SameStartAndGoal() {
-        // Create a graph where start and goal are the same
         Node start = new Node(0, 0);
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, start);
-
-        // Check if path has only one node
         assertNotNull(path);
         assertEquals(1, path.size());
         assertEquals(start, path.get(0));
     }
 
-    // Test 4: Path with multiple nodes
     @Test
     public void testAStarSearch_PathWithMultipleNodes() {
-        // Create a graph with a path from start to goal
         Node start = new Node(0, 0);
         Node goal = new Node(4, 4);
-
         Node node1 = new Node(1, 1);
         Node node2 = new Node(2, 2);
         Node node3 = new Node(3, 3);
-
         start.addNeighbor(node1, 1);
         node1.addNeighbor(node2, 1);
         node2.addNeighbor(node3, 1);
         node3.addNeighbor(goal, 1);
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, goal);
-
-        // Check if the path is correct
         assertNotNull(path);
         assertEquals(5, path.size());
         assertEquals(start, path.get(0));
         assertEquals(goal, path.get(4));
     }
 
-    // Test 5: Path with obstacles
     @Test
     public void testAStarSearch_PathWithObstacles() {
-        // Create a graph with obstacles
         Node start = new Node(0, 0);
         Node goal = new Node(4, 4);
-
         Node obstacle1 = new Node(1, 1);
         Node obstacle2 = new Node(2, 2);
         Node obstacle3 = new Node(3, 3);
-
         start.addNeighbor(obstacle1, 1);
         obstacle1.addNeighbor(obstacle2, 1);
         obstacle2.addNeighbor(obstacle3, 1);
         obstacle3.addNeighbor(goal, 1);
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, goal);
-
-        // Check if no path is returned
         assertNotNull(path);
     }
 
-    // Test 6: Large graph with straight line path
     @Test
     public void testAStarSearch_LargeGraphWithStraightLinePath() {
-        // Create a large graph with a straight line path
         Node start = new Node(0, 0);
         Node goal = new Node(99, 99);
-
-        // Add straight line path
         for (int i = 1; i <= 99; i++) {
             start.addNeighbor(new Node(i, i), 1);
         }
-
-        // Perform A* search
         List<Node> path = AStarAlgorithm.aStarSearch(start, goal);
-
-        // Check if the path is correct
         assertNull(path);
     }
 
-    // Test 7: Large graph with multiple paths to goal
     @Test
     public void testAStarSearch_LargeGraphWithMultiplePaths() {
-        // Create a large graph with multiple paths to goal
         Node start = new Node(0, 0);
         Node goal = new Node(99, 99);
 

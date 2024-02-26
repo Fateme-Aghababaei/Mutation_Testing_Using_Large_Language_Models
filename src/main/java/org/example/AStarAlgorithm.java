@@ -15,7 +15,7 @@ public class AStarAlgorithm {
             throw new IllegalArgumentException("Start and goal nodes must not be null");
         }
         Set<Node> visited = new HashSet<>();
-        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingDouble(Node::getTotalCost));
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingDouble(Node::getHeuristicCost));
         Map<Node, Double> costSoFar = new HashMap<>();
         Map<Node, Node> cameFrom = new HashMap<>();
 

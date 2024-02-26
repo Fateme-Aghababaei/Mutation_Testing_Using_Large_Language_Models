@@ -32,13 +32,13 @@ public class KMP_String_Matching_Algorithm {
                     i = i + 1;
             }
         }
-        return indexes;
+        return new ArrayList<Integer>();
     }
 
     static void computeLPSArray(String pat, int M, int[] lps) {
         int len = 0;
         int i = 1;
-        lps[0] = 0;
+        lps[0] = 0; 
 
         while (i < M) {
             if (pat.charAt(i) == pat.charAt(len)) {
